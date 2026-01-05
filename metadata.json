@@ -1,0 +1,7 @@
+{
+  "name": "DECYRA",
+  "description": "Convierte clases en apuntes inteligentes. Claridad, estructura y material de estudio.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
