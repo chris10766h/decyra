@@ -1,9 +1,7 @@
 import { GoogleGenAI, Type, Schema } from "@google/genai";
 import { DecyraAnalysis } from "../types";
 
-const API_KEY = process.env.API_KEY || '';
-
-const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const analysisSchema: Schema = {
   type: Type.OBJECT,
@@ -60,13 +58,9 @@ const analysisSchema: Schema = {
 };
 
 export const analyzeAudio = async (base64Audio: string, mimeType: string): Promise<DecyraAnalysis> => {
-  if (!API_KEY) {
-    throw new Error("API Key is missing.");
-  }
-
   try {
     const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
+      model: 'gemini-3-flash-preview',
       contents: {
         parts: [
           {
@@ -110,13 +104,9 @@ export const analyzeAudio = async (base64Audio: string, mimeType: string): Promi
 };
 
 export const analyzeText = async (transcriptText: string): Promise<DecyraAnalysis> => {
-  if (!API_KEY) {
-    throw new Error("API Key is missing.");
-  }
-
   try {
     const response = await ai.models.generateContent({
-      model: 'gemini-2.0-flash',
+      model: 'gemini-3-flash-preview',
       contents: {
         parts: [
           {
